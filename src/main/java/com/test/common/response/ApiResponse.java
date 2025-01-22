@@ -1,40 +1,31 @@
 package com.test.common.response;
 
-public class ApiResponse<T> {
-    private String status;
-    private T data;
-    private String error;
+import com.test.common.exception.ErrorCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
-//    public ApiResponse() {
-//    }
+@Getter
+@NoArgsConstructor
+public class ApiResponse<T> {
+    private boolean success;
+    private T data;
+    private ErrorResponse error;
 
     // 성공 응답 메서드
     public static <T> ApiResponse<T> success(T data) {
         ApiResponse<T> response = new ApiResponse<>();
-        response.status = "success";
+        response.success = true;
         response.data = data;
         response.error = null;
         return response;
     }
 
     // 실패 응답 메서드
-    public static <T> ApiResponse<T> error(String errorMessage) {
+    public static <T> ApiResponse<T> error(ErrorResponse errorResponse) {
         ApiResponse<T> response = new ApiResponse<>();
-        response.status = "error";
+        response.success = false;
         response.data = null;
-        response.error = errorMessage;
+        response.error = errorResponse;
         return response;
-    }
-
-    public String getStatus() {
-        return this.status;
-    }
-
-    public T getData() {
-        return this.data;
-    }
-
-    public String getError() {
-        return this.error;
     }
 }

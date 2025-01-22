@@ -11,20 +11,17 @@ import org.springframework.web.bind.annotation.RestController;
 public class ResponseController {
 
     @GetMapping("/api/success")
-    public ResponseEntity<ApiResponse<String>> success() {
-
-        return ResponseEntity.ok(ApiResponse.success("성공!"));
+    public ApiResponse<String> success() {
+        return ApiResponse.success("성공!");
     }
 
     @GetMapping("/api/fail")
-    public ResponseEntity<ApiResponse<String>> fail() {
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                .body(ApiResponse.error("실패!"));
+    public ApiResponse<String> fail() {
+        throw new IllegalArgumentException("잘못된 요청입니다.");
     }
 
     @GetMapping("/api/error")
-    public ResponseEntity<ApiResponse<String>> serverError() {
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                .body(ApiResponse.error("서버에러 발생!"));
+    public ApiResponse<String> serverError() {
+        throw new RuntimeException("서버 내부 오류 발생!");
     }
 }
