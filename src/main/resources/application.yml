@@ -18,6 +18,9 @@ spring:
       ddl-auto: create-drop
     show-sql: true
 
+  elasticsearch:
+    uris: http://localhost:9200
+
 jwt:
   secret:
     access: "5/QWm//BsCVJ41ORLonFufODCm9NWn0zsGK8/Wff+Lo="

@@ -1,6 +1,7 @@
 package com.test.domain.user.domain;
 
 import com.test.domain.post.domain.Post;
+import com.test.domain.product.domain.Product;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
@@ -24,6 +25,9 @@ public class User {
 
     @Column(nullable = false, length = 50)
     private String nickname;
+
+    @OneToMany(mappedBy = "seller")
+    private List<Product> sellingProducts = new ArrayList<>();
 
     @Builder
     public User(String nickname) {

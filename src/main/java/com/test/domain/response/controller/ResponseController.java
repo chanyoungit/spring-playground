@@ -3,6 +3,7 @@ package com.test.domain.response.controller;
 
 import com.test.common.response.ApiResponse;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -22,4 +23,7 @@ public class ResponseController {
     public ApiResponse<String> serverError() {
         throw new RuntimeException("서버 내부 오류 발생!");
     }
+
+    @PostMapping("/api/v1/product/{productId}")
+    public ApiResponse<String> testError() {throw new RuntimeException("해당 물품이 없습니다."); }
 }
